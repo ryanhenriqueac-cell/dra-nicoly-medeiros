@@ -33,7 +33,7 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: var(--header-h); -webkit-text-size-adjust: 100%; }
+html { overflow-x: clip; scroll-behavior: smooth; scroll-padding-top: var(--header-h); -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   font-family: var(--sans);
@@ -119,6 +119,8 @@ p { margin: 0 0 1em; }
   box-shadow: 0 1px 0 var(--linha-clara);
   --header-h: 72px;
 }
+/* Com o menu aberto, o desfoque prenderia o menu dentro do cabeçalho (iPhone): desliga */
+.menu-open .header, .menu-open .header.is-scrolled { -webkit-backdrop-filter: none; backdrop-filter: none; background: var(--cafe); }
 .header__inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
 .brand { display: flex; align-items: center; gap: 14px; color: var(--dourado); }
 .brand__mono { width: 58px; height: 46px; }
@@ -569,7 +571,7 @@ p { margin: 0 0 1em; }
 .cta-card > * { position: relative; }
 
 .info { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; align-content: center; }
-.map { grid-column: 1 / -1; margin-top: 26px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--linha); aspect-ratio: 21 / 7; min-height: 300px; background: var(--areia-2); }
+.map { grid-column: 1 / -1; margin-top: 26px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--linha); width: 100%; height: clamp(300px, 32vw, 420px); background: var(--areia-2); }
 .map iframe { width: 100%; height: 100%; border: 0; display: block; filter: sepia(.35) saturate(.8) contrast(.95); }
 .info li { display: flex; gap: 22px; align-items: flex-start; padding: 26px 28px; background: var(--marfim); border: 1px solid var(--linha); border-radius: var(--radius); transition: border-color .4s; }
 .info li:hover { border-color: rgba(200, 164, 108, .6); }
