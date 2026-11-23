@@ -853,6 +853,31 @@ p { margin: 0 0 1em; }
 .cilios { background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(200, 164, 108, .16), transparent 70%), var(--marfim); }
 .cilios__chips li { background: #fff; }
 
+/* ---------- Lash: modelos ---------- */
+.lash-models { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 40px); width: 100%; margin: 6px 0 56px; text-align: left; }
+.lash-model { margin: 0; }
+.lash-model__img {
+  position: relative; aspect-ratio: 4 / 5; border-radius: 999px 999px 6px 6px; overflow: hidden; background: var(--areia);
+  box-shadow: 0 0 0 1px rgba(200, 164, 108, .45), 0 0 0 10px var(--marfim), 0 0 0 11px rgba(200, 164, 108, .3), 0 34px 60px -30px rgba(47, 27, 22, .5);
+}
+.lash-model__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.lash-model:hover .lash-model__img img { transform: scale(1.06); }
+.lash-model figcaption { padding: 26px 6px 0; }
+.lash-model__num { font-family: var(--serif); font-style: italic; color: var(--dourado-escuro); font-size: 1.05rem; }
+.lash-model h3 { font-size: 1.9rem; margin: 4px 0 10px; }
+.lash-model p { color: var(--texto-suave); font-size: .95rem; margin-bottom: 14px; }
+.lash-model .link-gold { color: var(--dourado-escuro); margin-bottom: 0; }
+.lash-model .link-gold:hover { color: var(--cacau); }
+@media (max-width: 760px) {
+  .lash-models {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 76%;
+    overflow-x: auto; scroll-snap-type: x mandatory; padding: 12px 12px 8px; margin-inline: -12px; width: calc(100% + 24px);
+    scrollbar-width: none;
+  }
+  .lash-models::-webkit-scrollbar { display: none; }
+  .lash-model { scroll-snap-align: center; }
+}
+
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
 .hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); pointer-events: none; }
 .hero__video video { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }
