@@ -107,6 +107,14 @@
 <!-- ============ HERO ============ -->
 <section class="hero" id="inicio">
   <svg class="hero__watermark" aria-hidden="true"><use href="#mono"/></svg>
+  <!-- Vídeo da abertura: coloque assets/video/hero.mp4 (horizontal 16:9), hero-mobile.mp4 (vertical 9:16)
+       e hero-poster.jpg. Enquanto não existirem, a abertura com a foto continua aparecendo. -->
+  <div class="hero__video" data-hero-video aria-hidden="true">
+    <video muted loop playsinline preload="none"></video>
+  </div>
+  <button class="hero__play" type="button" aria-label="Pausar vídeo" hidden>
+    <span class="hero__play-ico"></span>
+  </button>
   <div class="container hero__grid">
     <div class="hero__copy">
       <p class="eyebrow reveal">Estética avançada · Atelier de cabelos</p>
@@ -280,7 +288,36 @@
 
     <div class="atelier__cta reveal">
       <p>Toda transformação começa com uma avaliação do histórico dos seus fios.</p>
-      <a class="btn btn--gold" data-wa="Olá! Vim pelo site e gostaria de agendar uma avaliação de cabelo."><svg class="ico"><use href="#i-wa"/></svg>Agendar no Atelier</a>
+      <div class="atelier__cta-actions"><a class="btn btn--ghost" href="#teste">Descobrir minha cor</a><a class="btn btn--gold" data-wa="Olá! Vim pelo site e gostaria de agendar uma avaliação de cabelo."><svg class="ico"><use href="#i-wa"/></svg>Agendar no Atelier</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTE: DESCUBRA SUA COR ============ -->
+<section class="section quiz" id="teste">
+  <div class="container quiz__grid">
+    <div class="quiz__visual reveal" aria-hidden="true">
+      <div class="tone-stage__arch">
+        <div class="tone tone--coloracao is-active" data-q-tone="coloracao"></div>
+        <div class="tone tone--morena" data-q-tone="morena"></div>
+        <div class="tone tone--mechas" data-q-tone="mechas"></div>
+        <div class="tone tone--loiro" data-q-tone="loiro"></div>
+        <div class="tone tone--pigmentacao" data-q-tone="pigmentacao"></div>
+        <div class="tone-stage__shine"></div>
+        <p class="tone-stage__name" data-q-name>Sua cor</p>
+      </div>
+      <svg class="quiz__mono"><use href="#mono"/></svg>
+    </div>
+
+    <div class="quiz__panel reveal">
+      <p class="eyebrow">Teste rápido · 1 minuto</p>
+      <h2>Descubra a sua <em>cor ideal.</em></h2>
+      <p class="quiz__intro">Três perguntas e a gente te mostra o caminho para a cor dos seus sonhos. No final, é só enviar o resultado para a Dra. Nicoly.</p>
+
+      <div class="quiz__box" data-quiz aria-live="polite">
+        <div class="quiz__progress"><span data-q-bar></span></div>
+        <div class="quiz__stage" data-q-stage></div>
+      </div>
     </div>
   </div>
 </section>

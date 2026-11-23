@@ -133,7 +133,7 @@ const CONFIG = {
   const activateTone = (btn) => {
     const key = btn.dataset.tone;
     toneItems.forEach((b) => b.setAttribute('aria-expanded', String(b === btn)));
-    $$('.tone').forEach((t) => t.classList.toggle('is-active', t.classList.contains(`tone--${key}`)));
+    $$('.tone-stage .tone').forEach((t) => t.classList.toggle('is-active', t.classList.contains(`tone--${key}`)));
     if (toneName) toneName.textContent = $('.tone-item__title', btn).textContent;
   };
   toneItems.forEach((btn) => {
@@ -186,5 +186,194 @@ const CONFIG = {
     });
     track.addEventListener('click', (e) => { if (moved) { e.preventDefault(); e.stopPropagation(); } }, true);
     track.addEventListener('dragstart', (e) => e.preventDefault());
+  }
+
+  /* ---------- Teste: descubra sua cor ---------- */
+  const quiz = $('[data-quiz]');
+  if (quiz) {
+    const stage = $('[data-q-stage]', quiz);
+    const bar = $('[data-q-bar]', quiz);
+    const section = quiz.closest('.quiz');
+    const toneName = $('[data-q-name]', section);
+
+    const QUESTIONS = [
+      {
+        id: 'base', title: 'Como está o seu cabelo hoje?',
+        options: [
+          { v: 'escuro', label: 'Castanho escuro ou preto', sub: 'cor natural', c: '#2A1810', tone: 'coloracao' },
+          { v: 'medio', label: 'Castanho médio ou claro', sub: 'cor natural', c: '#6B4129', tone: 'morena' },
+          { v: 'loiro', label: 'Já tenho loiro ou mechas', sub: 'quero renovar', c: '#D9B97E', tone: 'mechas' },
+          { v: 'quimica', label: 'Tenho coloração ou química', sub: 'tinta, progressiva…', c: '#5A2A1C', tone: 'pigmentacao' },
+        ],
+      },
+      {
+        id: 'sonho', title: 'Qual resultado você sonha?',
+        options: [
+          { v: 'loiro', label: 'Um loiro luminoso', sub: 'do mel ao pérola', c: '#EFE3C8', tone: 'loiro' },
+          { v: 'luz', label: 'Luz suave no rosto', sub: 'natural e sofisticado', c: '#C9A06A', tone: 'mechas' },
+          { v: 'morena', label: 'Morena com reflexos', sub: 'caramelo e mel', c: '#9A6538', tone: 'morena' },
+          { v: 'intensa', label: 'Cor intensa e brilho', sub: 'vida de volta aos fios', c: '#8A3A20', tone: 'pigmentacao' },
+          { v: 'brancos', label: 'Cobrir os brancos', sub: 'com elegância', c: '#3A2219', tone: 'coloracao' },
+        ],
+      },
+      {
+        id: 'rotina', title: 'Quanto de manutenção combina com você?',
+        options: [
+          { v: 'minima', label: 'O mínimo possível', sub: 'a cada 4 a 6 meses', c: '#E6DACB' },
+          { v: 'moderada', label: 'Moderada', sub: 'a cada 2 a 3 meses', c: '#C8A46C' },
+          { v: 'impecavel', label: 'Amo estar sempre impecável', sub: 'todo mês, sem erro', c: '#A9854F' },
+        ],
+      },
+    ];
+
+    const RESULTS = {
+      loiro: { nome: 'Loiro luminoso', tone: 'loiro', texto: 'Um loiro construído com técnica e cuidado com a fibra: claro, brilhante e saudável, no tom que valoriza a sua pele.', tecnica: 'Clareamento com proteção da fibra + tonalização' },
+      mechas: { nome: 'Mechas iluminadas', tone: 'mechas', texto: 'Pontos de luz desenhados para o seu rosto, com raiz esfumada e transição suave. Você clareia sem marcação e cresce com elegância.', tecnica: 'Mechas personalizadas com raiz esfumada' },
+      morena: { nome: 'Morena iluminada', tone: 'morena', texto: 'A profundidade das morenas com reflexos caramelo e mel que iluminam o rosto. Sofisticada, natural e de manutenção leve.', tecnica: 'Iluminação em tons caramelo e mel' },
+      pigmentacao: { nome: 'Pigmentação & brilho', tone: 'pigmentacao', texto: 'Cor intensa, tons corrigidos e brilho de volta aos fios. Uma renovação visível já na primeira sessão.', tecnica: 'Pigmentação e correção de tons' },
+      coloracao: { nome: 'Coloração sob medida', tone: 'coloracao', texto: 'Cobertura impecável da raiz às pontas, com uma cor criada para você e acabamento sofisticado.', tecnica: 'Coloração personalizada' },
+    };
+    const ROTINA_TXT = {
+      minima: 'Pensada para crescer bonita e pedir pouca manutenção.',
+      moderada: 'Retoques a cada 2 a 3 meses mantêm tudo perfeito.',
+      impecavel: 'Com retoques frequentes, a cor fica sempre no auge.',
+    };
+
+    const decide = (a) => {
+      const map = { loiro: 'loiro', luz: 'mechas', morena: 'morena', intensa: 'pigmentacao', brancos: 'coloracao' };
+      let r = map[a.sonho];
+      // loiro total em cabelo escuro com pouca manutenção: o caminho certo são mechas com raiz esfumada
+      if (r === 'loiro' && a.base === 'escuro' && a.rotina === 'minima') r = 'mechas';
+      // luz suave em cabelo escuro com pouca manutenção: morena iluminada
+      if (a.sonho === 'luz' && a.base === 'escuro' && a.rotina === 'minima') r = 'morena';
+      return r;
+    };
+
+    let step = 0;
+    let answers = {};
+    let busy = false;
+    const label = (qId) => QUESTIONS.find((q) => q.id === qId).options.find((o) => o.v === answers[qId]).label;
+
+    const showTone = (tone, name) => {
+      $$('[data-q-tone]', section).forEach((t) => t.classList.toggle('is-active', t.dataset.qTone === tone));
+      if (name) toneName.textContent = name;
+    };
+
+    const swap = (html) => {
+      stage.classList.add('is-leaving');
+      setTimeout(() => {
+        stage.innerHTML = html;
+        stage.classList.remove('is-leaving');
+      }, reduceMotion ? 0 : 280);
+    };
+
+    const renderQuestion = (instant) => {
+      const q = QUESTIONS[step];
+      bar.style.width = `${(step / QUESTIONS.length) * 100}%`;
+      const html = `
+        <p class="quiz__count">Pergunta ${step + 1} de ${QUESTIONS.length}</p>
+        <h3 class="quiz__q">${q.title}</h3>
+        <div class="quiz__opts" role="group" aria-label="${q.title}">
+          ${q.options.map((o) => `
+            <button type="button" class="quiz__opt${answers[q.id] === o.v ? ' is-picked' : ''}" data-v="${o.v}">
+              <span class="quiz__dot" style="--c:${o.c}"></span>
+              <span class="quiz__opt-txt"><b>${o.label}</b><small>${o.sub}</small></span>
+              <svg class="ico"><use href="#i-arrow"/></svg>
+            </button>`).join('')}
+        </div>
+        ${step > 0 ? '<button type="button" class="quiz__back" data-back>← Voltar</button>' : ''}`;
+      if (instant) stage.innerHTML = html; else swap(html);
+    };
+
+    const renderResult = () => {
+      const r = RESULTS[decide(answers)];
+      bar.style.width = '100%';
+      showTone(r.tone, r.nome);
+      const msg = 'Olá, Dra. Nicoly! Fiz o teste "Descubra sua cor" no site.\n\n'
+        + `Meu resultado: *${r.nome}*\n`
+        + `Cabelo hoje: ${label('base')}\n`
+        + `Meu sonho: ${label('sonho')}\n`
+        + `Manutenção: ${label('rotina')}\n\n`
+        + 'Gostaria de agendar uma avaliação!';
+      swap(`
+        <p class="quiz__count">Seu resultado</p>
+        <h3 class="quiz__result">${r.nome}</h3>
+        <p class="quiz__text">${r.texto} ${ROTINA_TXT[answers.rotina]}</p>
+        <p class="quiz__tec"><span>Caminho sugerido</span>${r.tecnica}</p>
+        <div class="quiz__actions">
+          <a class="btn btn--gold" href="${waLink(msg)}" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Quero esse resultado</a>
+          <button type="button" class="quiz__back" data-restart>Refazer o teste</button>
+        </div>
+        <p class="quiz__note">Resultado indicativo. A indicação final é feita na avaliação presencial, de acordo com o histórico e a saúde dos seus fios.</p>`);
+    };
+
+    stage.addEventListener('click', (e) => {
+      const opt = e.target.closest('.quiz__opt');
+      if (opt) {
+        if (busy) return;
+        busy = true;
+        const q = QUESTIONS[step];
+        answers[q.id] = opt.dataset.v;
+        $$('.quiz__opt', stage).forEach((b) => b.classList.toggle('is-picked', b === opt));
+        const o = q.options.find((x) => x.v === opt.dataset.v);
+        if (o.tone) showTone(o.tone, o.label);
+        step += 1;
+        setTimeout(() => {
+          if (step < QUESTIONS.length) renderQuestion(); else renderResult();
+          setTimeout(() => { busy = false; }, reduceMotion ? 0 : 300);
+        }, reduceMotion ? 0 : 220);
+        return;
+      }
+      if (e.target.closest('[data-back]')) { step -= 1; renderQuestion(); return; }
+      if (e.target.closest('[data-restart]')) {
+        step = 0;
+        answers = {};
+        showTone('coloracao', 'Sua cor');
+        renderQuestion();
+      }
+    });
+
+    renderQuestion(true);
+  }
+
+  /* ---------- Vídeo da abertura (só entra se o arquivo existir) ---------- */
+  const heroVideo = document.querySelector('[data-hero-video]');
+  if (heroVideo) {
+    const hero = heroVideo.closest('.hero');
+    const video = heroVideo.querySelector('video');
+    const playBtn = hero.querySelector('.hero__play');
+    const saveData = navigator.connection && navigator.connection.saveData;
+    const mobile = window.matchMedia('(max-width: 1080px)').matches;
+    const base = 'assets/video/';
+    const candidates = mobile ? ['hero-mobile.mp4', 'hero.mp4'] : ['hero.mp4'];
+
+    const exists = (url) => fetch(url, { method: 'HEAD' }).then((r) => r.ok).catch(() => false);
+    const setPaused = (paused) => {
+      playBtn.classList.toggle('is-paused', paused);
+      playBtn.setAttribute('aria-label', paused ? 'Reproduzir vídeo' : 'Pausar vídeo');
+    };
+
+    (async () => {
+      if (saveData) return;
+      let src = null;
+      for (const name of candidates) { if (await exists(base + name)) { src = base + name; break; } }
+      if (!src) return;
+      if (await exists(base + 'hero-poster.jpg')) video.poster = base + 'hero-poster.jpg';
+      video.src = src;
+      video.preload = 'auto';
+      hero.classList.add('has-video');
+      playBtn.hidden = false;
+      if (reduceMotion) { setPaused(true); return; }
+      video.play().then(() => setPaused(false)).catch(() => setPaused(true));
+    })();
+
+    playBtn.addEventListener('click', () => {
+      if (video.paused) { video.play(); setPaused(false); } else { video.pause(); setPaused(true); }
+    });
+    // economiza bateria: pausa quando a abertura sai da tela
+    new IntersectionObserver(([e]) => {
+      if (!hero.classList.contains('has-video') || playBtn.classList.contains('is-paused')) return;
+      if (e.isIntersecting) video.play().catch(() => {}); else video.pause();
+    }).observe(hero);
   }
 })();
