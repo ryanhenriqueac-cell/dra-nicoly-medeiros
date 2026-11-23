@@ -1020,6 +1020,82 @@ p { margin: 0 0 1em; }
   .cf__row-head { gap: 14px; padding: 16px 0; }
 }
 
+/* ---------- Cor & luz com fotos reais ---------- */
+.cf__arch--shade::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(0deg, rgba(20, 11, 8, .78) 0%, rgba(20, 11, 8, .15) 32%, transparent 50%);
+}
+.cf__arch--shade .cf__label { z-index: 1; padding: 0 18px; line-height: 1.15; }
+.cf--photos .cf__label { font-size: 1.3rem; }
+.swatches--dots { flex-basis: 100%; order: -1; justify-content: center; gap: 10px; }
+.swatches--dots .swatch::before { width: 26px; height: 26px; }
+.cf--photos .cf__nav { flex-wrap: wrap; gap: 18px 16px; }
+.cf__hint { font-size: .62rem; letter-spacing: .26em; text-transform: uppercase; color: rgba(251, 247, 241, .5); }
+.cf--photos .cf__row-head { padding: 14px 0; }
+.cf--photos .cf__row-head h3 { font-size: clamp(1.35rem, 2vw, 1.7rem); }
+
+/* ---------- Estética: vídeos "Na prática" ---------- */
+.reel { margin-bottom: 64px; }
+.reel__track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.reel__item {
+  position: relative; aspect-ratio: 9 / 16; border-radius: 14px; overflow: hidden; padding: 0; border: 0; cursor: pointer;
+  background: var(--cafe-2); box-shadow: 0 24px 50px -28px rgba(47, 27, 22, .6);
+  transition: transform .5s var(--ease), box-shadow .5s;
+}
+.reel__item:hover { transform: translateY(-6px); box-shadow: 0 34px 60px -28px rgba(47, 27, 22, .7); }
+.reel__item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.reel__item::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(20, 11, 8, .8), transparent 42%); pointer-events: none; }
+.reel__play {
+  position: absolute; top: 12px; right: 12px; z-index: 1; width: 34px; height: 34px; border-radius: 50%;
+  display: grid; place-items: center; color: var(--cafe); background: rgba(251, 247, 241, .9);
+}
+.reel__play svg { width: 16px; height: 16px; margin-left: 2px; }
+.reel__name {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 1; text-align: left;
+  font-family: var(--serif); font-size: 1.2rem; line-height: 1.15; color: var(--marfim);
+}
+.reel__item:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+.reel__hint { text-align: center; font-size: .66rem; letter-spacing: .24em; text-transform: uppercase; color: var(--texto-suave); margin: 18px 0 0; }
+
+.proc__video {
+  display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin: -10px 0 18px; padding: 7px 14px 7px 10px;
+  border: 1px solid var(--linha); border-radius: 99px; background: transparent; cursor: pointer;
+  font: inherit; font-size: .62rem; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--cacau);
+  transition: color .4s, border-color .4s, background .4s;
+}
+.proc__video svg { width: 14px; height: 14px; }
+.proc:hover .proc__video, .proc:focus-within .proc__video { color: var(--dourado-claro); border-color: rgba(200, 164, 108, .45); }
+.proc__video:hover { background: rgba(200, 164, 108, .15); }
+
+/* ---------- Modal de vídeo ---------- */
+.vmodal {
+  padding: 0; border: 0; background: transparent; max-width: min(420px, 92vw); width: 100%; overflow: visible;
+}
+.vmodal::backdrop { background: rgba(20, 11, 8, .88); backdrop-filter: blur(6px); }
+.vmodal__video { width: 100%; max-height: 74vh; border-radius: 16px; background: #000; display: block; }
+.vmodal__bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 14px; }
+.vmodal__title { margin: 0; font-family: var(--serif); font-size: 1.4rem; color: var(--marfim); }
+.vmodal__cta { flex: none; }
+.vmodal__close {
+  position: absolute; top: -16px; right: -16px; z-index: 2; width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
+  border: 1px solid rgba(200, 164, 108, .6); background: var(--cafe); color: var(--marfim); font-size: 1.6rem; line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .reel__track {
+    grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 42%;
+    overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
+    margin-inline: calc(var(--gutter) * -1); padding: 4px var(--gutter) 10px;
+  }
+  .reel__track::-webkit-scrollbar { display: none; }
+  .reel__item { scroll-snap-align: start; }
+}
+@media (max-width: 640px) {
+  .reel__track { grid-auto-columns: 58%; }
+  .vmodal__bar { flex-direction: column; align-items: stretch; text-align: center; }
+  .vmodal__close { right: 0; top: -52px; }
+}
+
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
 .hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); pointer-events: none; }
 .hero__video video { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }

@@ -251,6 +251,50 @@ const CONFIG = {
     go(0);
   });
 
+  /* ---------- Vídeos "Na prática": tocam sem som quando aparecem; toque abre com som ---------- */
+  const reelVideos = $$('.reel__item video');
+  const lowData = navigator.connection && navigator.connection.saveData;
+  if (reelVideos.length && !reduceMotion && !lowData && 'IntersectionObserver' in window) {
+    const vio = new IntersectionObserver((entries) => {
+      entries.forEach(({ target: v, isIntersecting }) => {
+        if (isIntersecting) {
+          if (!v.src) v.src = v.dataset.src;
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { threshold: 0.5 });
+    reelVideos.forEach((v) => vio.observe(v));
+  }
+
+  const vmodal = $('#vmodal');
+  if (vmodal && typeof vmodal.showModal === 'function') {
+    const mv = $('.vmodal__video', vmodal);
+    const openVideo = (key) => {
+      const item = $(`.reel__item[data-video="${key}"]`);
+      if (!item) return;
+      const title = item.dataset.title;
+      $('.vmodal__title', vmodal).textContent = title;
+      $('.vmodal__cta', vmodal).href = waLink(`Olá, Dra. Nicoly! Vi o vídeo de ${title} no site e tenho interesse.`);
+      mv.poster = `assets/video/${key}.jpg`;
+      mv.src = `assets/video/${key}.mp4`;
+      mv.muted = false;
+      reelVideos.forEach((v) => v.pause());
+      vmodal.showModal();
+      mv.play().catch(() => {});
+    };
+    $$('.reel__item').forEach((b) => b.addEventListener('click', () => openVideo(b.dataset.video)));
+    $$('[data-video-open]').forEach((b) => b.addEventListener('click', () => openVideo(b.dataset.videoOpen)));
+    $('[data-vclose]', vmodal).addEventListener('click', () => vmodal.close());
+    vmodal.addEventListener('click', (e) => { if (e.target === vmodal) vmodal.close(); });
+    vmodal.addEventListener('close', () => {
+      mv.pause();
+      mv.removeAttribute('src');
+      mv.load();
+    });
+  }
+
   /* ---------- Teste: descubra sua cor ---------- */
   const quiz = $('[data-quiz]');
   if (quiz) {
