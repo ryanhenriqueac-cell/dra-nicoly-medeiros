@@ -468,7 +468,8 @@ const CONFIG = {
         + `Meu cabelo hoje: ${BASES[st.base].nome}, ${TEXTURAS[st.tex]}\n`
         + `Resultado que sonho: *${d.nome}*\n`
         + `Quero cuidar a cada: ${meses(st.months)}\n\n`
-        + 'Gostaria de agendar uma avaliação!';
+        + 'Gostaria de agendar uma avaliação!\n\n'
+        + `Meu cartão: ${new URL(`cartao/${st.dream}.html`, location.href).href}`;
       waBtn.href = waLink(msg);
     };
 
@@ -538,7 +539,12 @@ const CONFIG = {
       const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
       const ctx = cv.getContext('2d');
       try {
-        await Promise.all(['italic 64px "Cormorant Garamond"', '400 30px "Jost"', '500 22px "Jost"', '60px "Pinyon Script"'].map((f) => document.fonts.load(f)));
+        const FONTES = [['italic 64px "Cormorant Garamond"', d.nome], ['400 30px "Jost"', d.tec], ['500 22px "Jost"', 'MEU TOM IDEAL'], ['60px "Pinyon Script"', 'Dra. Nicoly Medeiros']];
+        for (let tent = 0; tent < 4; tent += 1) {
+          await Promise.all(FONTES.map(([f, t]) => document.fonts.load(f, t)));
+          if (FONTES.every(([f, t]) => document.fonts.check(f, t))) break;
+          await new Promise((r) => setTimeout(r, 500));
+        }
       } catch (e) { /* segue com fontes do sistema */ }
       const g = ctx.createRadialGradient(W / 2, 520, 60, W / 2, 560, 760);
       g.addColorStop(0, '#4A3027'); g.addColorStop(1, '#2F1B16');
@@ -578,16 +584,22 @@ const CONFIG = {
       ctx.fillText('Dra. Nicoly Medeiros', W / 2, 1250);
       ctx.fillStyle = 'rgba(251,247,241,.6)'; ctx.font = '400 24px "Jost", sans-serif';
       ctx.fillText(`@${CONFIG.instagram}`, W / 2, 1300);
-      return new Promise((res) => cv.toBlob(res, 'image/png'));
+      return new Promise((res) => cv.toBlob(res, 'image/jpeg', 0.95));
     };
     const saveBtn = $('[data-qz-save]', qz);
     saveBtn.addEventListener('click', async () => {
       if (!st.dream) return;
       saveBtn.disabled = true;
       try {
-        const blob = await buildCard();
-        const name = `meu-tom-${st.dream}.png`;
-        const file = new File([blob], name, { type: 'image/png' });
+        // cartão pronto em alta qualidade (assets/cartoes); se falhar, gera na hora
+        let blob = null;
+        try {
+          const r = await fetch(`assets/cartoes/${st.dream}.jpg`);
+          if (r.ok) blob = await r.blob();
+        } catch (e) { /* gera abaixo */ }
+        if (!blob) blob = await buildCard();
+        const name = `meu-tom-${st.dream}.jpg`;
+        const file = new File([blob], name, { type: 'image/jpeg' });
         const baixar = () => {
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
