@@ -373,8 +373,9 @@
       <p>Passe pelas técnicas e veja cada tom ganhar vida.</p>
     </header>
 
-    <div class="cf cf--dark reveal" data-cf aria-roledescription="carrossel" aria-label="Tons do Atelier">
-      <div class="cf__stage">
+    <div class="cf cf--dark cf--split reveal" data-cf aria-roledescription="carrossel" aria-label="Tons do Atelier">
+      <div class="cf__visual">
+        <div class="cf__stage">
           <div class="cf__item">
             <div class="cf__arch">
               <div class="tone tone--loiro is-active"></div>
@@ -410,43 +411,50 @@
               <p class="cf__label">Coloração</p>
             </div>
           </div>
+        </div>
+        <div class="cf__nav">
+          <button class="cf__btn" type="button" data-cf-prev aria-label="Anterior"><svg class="ico flip"><use href="#i-arrow"/></svg></button>
+          <div class="swatches swatches--nav" role="group" aria-label="Escolha um tom"><button type="button" class="swatch" data-cf-go="0" style="--c:#EFE3C8" aria-label="Ver Loiros"><span>Pérola</span></button><button type="button" class="swatch" data-cf-go="1" style="--c:#D9B97E" aria-label="Ver Mechas"><span>Mel</span></button><button type="button" class="swatch" data-cf-go="2" style="--c:#B07A45" aria-label="Ver Morena iluminada"><span>Caramelo</span></button><button type="button" class="swatch" data-cf-go="3" style="--c:#9A4424" aria-label="Ver Pigmentação"><span>Cobre</span></button><button type="button" class="swatch" data-cf-go="4" style="--c:#2E1B14" aria-label="Ver Coloração"><span>Café</span></button></div>
+          <button class="cf__btn" type="button" data-cf-next aria-label="Próximo"><svg class="ico"><use href="#i-arrow"/></svg></button>
+        </div>
       </div>
-      <div class="cf__info" aria-live="polite">
-          <div class="cf__text">
-            <span class="cf__num">01</span>
-            <h3>Loiros</h3>
+      <div class="cf__list">
+        <p class="atelier__label">Escolha o seu tom</p>
+        <div class="cf__text cf__row">
+          <button type="button" class="cf__row-head" data-cf-go="0"><span class="cf__num">01</span><h3>Loiros</h3><svg class="ico"><use href="#i-arrow"/></svg></button>
+          <div class="cf__row-body"><div>
             <p>Do mel ao platinado, loiros luminosos e saudáveis, construídos com técnica e respeito à fibra do fio.</p>
             <a class="link-gold" data-wa="Olá! Tenho interesse em fazer loiro. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="cf__text">
-            <span class="cf__num">02</span>
-            <h3>Mechas</h3>
+          </div></div>
+        </div>
+        <div class="cf__text cf__row">
+          <button type="button" class="cf__row-head" data-cf-go="1"><span class="cf__num">02</span><h3>Mechas</h3><svg class="ico"><use href="#i-arrow"/></svg></button>
+          <div class="cf__row-body"><div>
             <p>Pontos de luz desenhados para o seu rosto, com transição suave e manutenção inteligente.</p>
             <a class="link-gold" data-wa="Olá! Tenho interesse em mechas. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="cf__text">
-            <span class="cf__num">03</span>
-            <h3>Morena iluminada</h3>
+          </div></div>
+        </div>
+        <div class="cf__text cf__row">
+          <button type="button" class="cf__row-head" data-cf-go="2"><span class="cf__num">03</span><h3>Morena iluminada</h3><svg class="ico"><use href="#i-arrow"/></svg></button>
+          <div class="cf__row-body"><div>
             <p>A elegância das morenas com reflexos caramelo e mel que iluminam sem perder a profundidade.</p>
             <a class="link-gold" data-wa="Olá! Tenho interesse em morena iluminada. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="cf__text">
-            <span class="cf__num">04</span>
-            <h3>Pigmentação</h3>
+          </div></div>
+        </div>
+        <div class="cf__text cf__row">
+          <button type="button" class="cf__row-head" data-cf-go="3"><span class="cf__num">04</span><h3>Pigmentação</h3><svg class="ico"><use href="#i-arrow"/></svg></button>
+          <div class="cf__row-body"><div>
             <p>Cor intensa e brilho de volta aos fios, corrigindo tons e devolvendo vida ao cabelo.</p>
             <a class="link-gold" data-wa="Olá! Tenho interesse em pigmentação. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-          <div class="cf__text">
-            <span class="cf__num">05</span>
-            <h3>Coloração</h3>
+          </div></div>
+        </div>
+        <div class="cf__text cf__row">
+          <button type="button" class="cf__row-head" data-cf-go="4"><span class="cf__num">05</span><h3>Coloração</h3><svg class="ico"><use href="#i-arrow"/></svg></button>
+          <div class="cf__row-body"><div>
             <p>Cobertura impecável e cor sob medida, da raiz às pontas, com acabamento sofisticado.</p>
             <a class="link-gold" data-wa="Olá! Tenho interesse em coloração. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-      </div>
-      <div class="cf__nav">
-        <button class="cf__btn" type="button" data-cf-prev aria-label="Anterior"><svg class="ico flip"><use href="#i-arrow"/></svg></button>
-        <div class="swatches swatches--nav" role="group" aria-label="Escolha um tom"><button type="button" class="swatch" data-cf-go="0" style="--c:#EFE3C8" aria-label="Ver Loiros"><span>Pérola</span></button><button type="button" class="swatch" data-cf-go="1" style="--c:#D9B97E" aria-label="Ver Mechas"><span>Mel</span></button><button type="button" class="swatch" data-cf-go="2" style="--c:#B07A45" aria-label="Ver Morena iluminada"><span>Caramelo</span></button><button type="button" class="swatch" data-cf-go="3" style="--c:#9A4424" aria-label="Ver Pigmentação"><span>Cobre</span></button><button type="button" class="swatch" data-cf-go="4" style="--c:#2E1B14" aria-label="Ver Coloração"><span>Café</span></button></div>
-        <button class="cf__btn" type="button" data-cf-next aria-label="Próximo"><svg class="ico"><use href="#i-arrow"/></svg></button>
+          </div></div>
+        </div>
       </div>
     </div>
 
