@@ -249,6 +249,35 @@ const CONFIG = {
     stage.addEventListener('pointercancel', () => { x0 = null; });
 
     go(0);
+
+    // rotação automática (data-cf-auto = milissegundos por tom)
+    const delay = Number(root.dataset.cfAuto);
+    if (delay && !reduceMotion) {
+      let timer = null;
+      let visible = false;
+      let hovering = false;
+      let resumeAt = 0;
+      const tick = () => {
+        if (visible && !hovering && Date.now() >= resumeAt && document.visibilityState === 'visible') go(active + 1);
+      };
+      const start = () => { if (!timer) timer = setInterval(tick, delay); };
+      const stop = () => { clearInterval(timer); timer = null; };
+      // depois que a pessoa mexe, espera um pouco antes de voltar a girar
+      const hold = () => { resumeAt = Date.now() + delay * 2; };
+      root.addEventListener('pointerdown', hold);
+      root.addEventListener('click', hold);
+      root.addEventListener('keydown', hold);
+      // pausa com o mouse em cima (só mouse de verdade; no celular o toque usa o "hold")
+      root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
+      root.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; hold(); } });
+      // pausa enquanto navega pelo teclado
+      root.addEventListener('focusin', (e) => { if (e.target.matches(':focus-visible')) hovering = true; });
+      root.addEventListener('focusout', () => { hovering = false; });
+      new IntersectionObserver(([e]) => {
+        visible = e.isIntersecting;
+        if (visible) start(); else stop();
+      }, { threshold: 0.35 }).observe(root);
+    }
   });
 
   /* ---------- Vídeos "Na prática": tocam sem som quando aparecem; toque abre com som ---------- */
