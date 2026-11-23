@@ -702,6 +702,22 @@ p { margin: 0 0 1em; }
   .js .reveal { opacity: 1; transform: none; }
 }
 
+/* ---------- Portfólio do Atelier (fotos de resultado) ---------- */
+.hair-folio { margin-top: 90px; }
+.hair-folio__label { margin-bottom: 26px; }
+.hair-folio__grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: auto; gap: 14px; }
+.hair-shot { margin: 0; position: relative; overflow: hidden; border-radius: var(--radius); aspect-ratio: 3 / 4; background: var(--cafe-3); }
+.hair-shot--big { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+.hair-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
+.hair-shot:hover img { transform: scale(1.05); }
+.hair-shot::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 0 1px rgba(200, 164, 108, .25); border-radius: inherit; pointer-events: none; }
+.hair-folio__more { margin: 24px 0 0; }
+@media (max-width: 640px) {
+  .hair-folio { margin-top: 64px; }
+  .hair-folio__grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .hair-shot--big { grid-row: auto; aspect-ratio: 3 / 4; }
+}
+
 /* ---------- Estética: grupos Facial / Corporal ---------- */
 .procs-group + .procs-group { margin-top: 64px; }
 .procs-group__label {

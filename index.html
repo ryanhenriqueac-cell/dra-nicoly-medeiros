@@ -133,7 +133,7 @@
 
     <div class="hero__media reveal">
       <div class="arch">
-        <img src="assets/img/labios-1.jpg" alt="Close-up de lábios após preenchimento labial, com contorno definido e aspecto hidratado" fetchpriority="high">
+        <img src="assets/img/dra-nicoly.jpg" alt="Dra. Nicoly Medeiros, biomédica e colorimetrista" fetchpriority="high" style="object-position:50% 20%">
       </div>
       <div class="seal" aria-hidden="true">
         <svg viewBox="0 0 200 200" class="seal__ring">
@@ -142,7 +142,7 @@
         </svg>
         <svg class="seal__mono"><use href="#mono"/></svg>
       </div>
-      <p class="hero__caption"><span></span>Resultado real · Preenchimento labial</p>
+      <p class="hero__caption"><span></span>Dra. Nicoly Medeiros · CRBM 51496</p>
     </div>
   </div>
 </section>
@@ -254,37 +254,16 @@
       </div>
     </div>
 
-    <!-- GALERIA DO ATELIER
-         Para colocar as fotos, salve em assets/img/ com estes nomes exatos (jpg):
-         cabelo-loiro-antes.jpg / cabelo-loiro-depois.jpg
-         cabelo-morena-antes.jpg / cabelo-morena-depois.jpg
-         cabelo-mechas-antes.jpg / cabelo-mechas-depois.jpg
-         Elas aparecem sozinhas. Enquanto não existirem, fica o espaço reservado. -->
-    <div class="hair-gallery">
-      <figure class="hair-case reveal">
-        <div class="hair-case__pair">
-          <div class="hair-ph" data-photo="assets/img/cabelo-loiro-antes.jpg" role="img" aria-label="Antes: transformação para o loiro"><span class="tag tag--before">Antes</span><small>Foto antes</small></div>
-          <div class="hair-ph" data-photo="assets/img/cabelo-loiro-depois.jpg" role="img" aria-label="Depois: loiro"><span class="tag tag--before">Depois</span><small>Foto depois</small></div>
-          <svg class="case__seal" aria-hidden="true"><use href="#mono"/></svg>
-        </div>
-        <figcaption><b>01</b> Transformação · Loiro</figcaption>
-      </figure>
-      <figure class="hair-case reveal">
-        <div class="hair-case__pair">
-          <div class="hair-ph" data-photo="assets/img/cabelo-morena-antes.jpg" role="img" aria-label="Antes: morena iluminada"><span class="tag tag--before">Antes</span><small>Foto antes</small></div>
-          <div class="hair-ph" data-photo="assets/img/cabelo-morena-depois.jpg" role="img" aria-label="Depois: morena iluminada"><span class="tag tag--before">Depois</span><small>Foto depois</small></div>
-          <svg class="case__seal" aria-hidden="true"><use href="#mono"/></svg>
-        </div>
-        <figcaption><b>02</b> Morena iluminada</figcaption>
-      </figure>
-      <figure class="hair-case reveal">
-        <div class="hair-case__pair">
-          <div class="hair-ph" data-photo="assets/img/cabelo-mechas-antes.jpg" role="img" aria-label="Antes: mechas"><span class="tag tag--before">Antes</span><small>Foto antes</small></div>
-          <div class="hair-ph" data-photo="assets/img/cabelo-mechas-depois.jpg" role="img" aria-label="Depois: mechas"><span class="tag tag--before">Depois</span><small>Foto depois</small></div>
-          <svg class="case__seal" aria-hidden="true"><use href="#mono"/></svg>
-        </div>
-        <figcaption><b>03</b> Mechas</figcaption>
-      </figure>
+    <div class="hair-folio">
+      <p class="atelier__label hair-folio__label">Resultados reais do Atelier</p>
+      <div class="hair-folio__grid">
+        <figure class="hair-shot hair-shot--big reveal"><img src="assets/img/cabelo-1.jpg" alt="Resultado do Atelier: loiro iluminado em cabelo ondulado" loading="lazy"></figure>
+        <figure class="hair-shot reveal"><img src="assets/img/cabelo-2.jpg" alt="Resultado do Atelier: cachos com luzes douradas" loading="lazy"></figure>
+        <figure class="hair-shot reveal"><img src="assets/img/cabelo-3.jpg" alt="Resultado do Atelier: cachos loiros iluminados" loading="lazy"></figure>
+        <figure class="hair-shot reveal"><img src="assets/img/cabelo-4.jpg" alt="Resultado do Atelier: cliente sorrindo com cachos iluminados" loading="lazy" style="object-position:50% 30%"></figure>
+        <figure class="hair-shot reveal"><img src="assets/img/cabelo-5.jpg" alt="Resultado do Atelier: cachos com reflexos caramelo" loading="lazy"></figure>
+      </div>
+      <a class="link-gold hair-folio__more" data-ig>Ver mais no Instagram <svg class="ico"><use href="#i-arrow"/></svg></a>
     </div>
 
     <div class="atelier__cta reveal">
@@ -481,6 +460,14 @@
           </div>
           <figcaption><b>04</b> Preenchimento labial · resultado</figcaption>
         </figure>
+        <figure class="case">
+          <div class="case__pair">
+            <div class="panel" style="background-image:url('assets/img/limpeza-1.jpg');--y:50%" role="img" aria-label="Pele após limpeza de pele, vista de baixo"></div>
+            <div class="panel" style="background-image:url('assets/img/limpeza-2.jpg');--y:50%" role="img" aria-label="Pele uniforme e hidratada após limpeza de pele"></div>
+            <svg class="case__seal" aria-hidden="true"><use href="#mono"/></svg>
+          </div>
+          <figcaption><b>05</b> Limpeza de pele · resultado</figcaption>
+        </figure>
       </div>
       <div class="carousel__nav">
         <button class="carousel__btn" data-dir="-1" aria-label="Anterior"><svg class="ico flip"><use href="#i-arrow"/></svg></button>
@@ -496,11 +483,7 @@
 <section class="section sobre" id="sobre">
   <div class="container sobre__grid">
     <div class="sobre__media reveal">
-      <!-- TROCAR: substitua o bloco .arch--placeholder por <div class="arch"><img src="assets/img/dra-nicoly.jpg" alt="Dra. Nicoly Medeiros"></div> -->
-      <div class="arch arch--placeholder">
-        <span>Foto da Dra. Nicoly</span>
-        <svg><use href="#mono"/></svg>
-      </div>
+      <div class="arch"><img src="assets/img/dra-nicoly.jpg" alt="Retrato da Dra. Nicoly Medeiros" loading="lazy" style="object-position:50% 35%"></div>
       <p class="signature" aria-hidden="true">Nicoly Medeiros</p>
     </div>
     <div class="sobre__copy">
