@@ -1096,6 +1096,9 @@ p { margin: 0 0 1em; }
   .vmodal__close { right: 0; top: -52px; }
 }
 
+/* ---------- Monograma: pontilhado visível também nos tamanhos pequenos ---------- */
+.brand__mono, .seal__mono, .case__seal, .footer__mono, .quiz__mono { --mono-dot: 3.6; --mono-gap: 7.6; }
+
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
 .hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); pointer-events: none; }
 .hero__video video { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }
