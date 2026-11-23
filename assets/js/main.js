@@ -267,10 +267,7 @@ const CONFIG = {
       root.addEventListener('pointerdown', hold);
       root.addEventListener('click', hold);
       root.addEventListener('keydown', hold);
-      // pausa com o mouse em cima (só mouse de verdade; no celular o toque usa o "hold")
-      root.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovering = true; });
-      root.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { hovering = false; hold(); } });
-      // pausa enquanto navega pelo teclado
+      // pausa só enquanto navega pelo teclado; clique/toque/arraste usam o "hold" acima
       root.addEventListener('focusin', (e) => { if (e.target.matches(':focus-visible')) hovering = true; });
       root.addEventListener('focusout', () => { hovering = false; });
       new IntersectionObserver(([e]) => {
