@@ -21,7 +21,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=202611231842">
+  <link rel="stylesheet" href="assets/css/style.css?v=202611231946">
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -556,29 +556,110 @@
 </section>
 
 <!-- ============ TESTE: DESCUBRA SUA COR ============ -->
-<section class="section quiz" id="teste">
+<section class="section quiz qz" id="teste">
   <div class="container quiz__grid">
     <div class="quiz__visual reveal" aria-hidden="true">
-      <div class="tone-stage__arch">
-        <div class="tone tone--coloracao is-active" data-q-tone="coloracao"></div>
-        <div class="tone tone--morena" data-q-tone="morena"></div>
-        <div class="tone tone--mechas" data-q-tone="mechas"></div>
-        <div class="tone tone--loiro" data-q-tone="loiro"></div>
-        <div class="tone tone--pigmentacao" data-q-tone="pigmentacao"></div>
-        <div class="tone-stage__shine"></div>
-        <p class="tone-stage__name" data-q-name>Sua cor</p>
+      <div class="qz-arch" data-qz-arch>
+        <div class="qz-arch__base"></div>
+        <img class="qz-arch__photo" data-qz-photo="perola" src="assets/img/cor-perola.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="mel" src="assets/img/cor-mel.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="mechas-douradas" src="assets/img/cor-mechas-douradas.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="marrom-dourado" src="assets/img/cor-marrom-dourado.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="caramelo" src="assets/img/cor-caramelo.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="cobre" src="assets/img/cor-cobre.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="coloracao" src="assets/img/cor-coloracao.jpg" alt="" loading="lazy">
+        <img class="qz-arch__photo" data-qz-photo="cafe" src="assets/img/cor-cafe.jpg" alt="" loading="lazy">
+        <p class="qz-arch__name" data-qz-name>Sua cor</p>
       </div>
       <svg class="quiz__mono"><use href="#mono"/></svg>
     </div>
 
     <div class="quiz__panel reveal">
-      <p class="eyebrow">Teste rápido · 1 minuto</p>
+      <p class="eyebrow">Teste interativo · 1 minuto</p>
       <h2>Descubra a sua <em>cor ideal.</em></h2>
-      <p class="quiz__intro">Três perguntas e a gente te mostra o caminho para a cor dos seus sonhos. No final, é só enviar o resultado para a Dra. Nicoly.</p>
+      <p class="quiz__intro">Escolha o resultado dos seus sonhos, veja como ele cresce mês a mês e receba o seu cartão com a indicação da Dra. Nicoly.</p>
 
-      <div class="quiz__box" data-quiz aria-live="polite">
-        <div class="quiz__progress"><span data-q-bar></span></div>
-        <div class="quiz__stage" data-q-stage></div>
+      <div class="qz-box" data-qz>
+        <ol class="qz-dots" aria-label="Etapas do teste">
+          <li><button type="button" data-qz-goto="0"><span></span>Hoje</button></li>
+          <li><button type="button" data-qz-goto="1"><span></span>Sonho</button></li>
+          <li><button type="button" data-qz-goto="2"><span></span>Cuidado</button></li>
+          <li><button type="button" data-qz-goto="3"><span></span>Resultado</button></li>
+        </ol>
+        <div class="qz-viewport" data-qz-viewport>
+          <div class="qz-track" data-qz-track>
+
+            <div class="qz-step" data-qz-step="0">
+              <p class="qz-count">Etapa 1 de 3</p>
+              <h3 class="qz-q">Como está o seu cabelo hoje?</h3>
+              <p class="qz-label">Cor</p>
+              <div class="qz-sws" role="group" aria-label="Cor do cabelo hoje"><button type="button" class="qz-sw" data-qz-base="preto" style="--c:#17100D" aria-pressed="false"><span class="qz-sw__dot"></span><b>Preto</b><small>natural</small></button><button type="button" class="qz-sw" data-qz-base="escuro" style="--c:#3A2318" aria-pressed="false"><span class="qz-sw__dot"></span><b>Castanho escuro</b><small>natural</small></button><button type="button" class="qz-sw" data-qz-base="claro" style="--c:#6B4630" aria-pressed="false"><span class="qz-sw__dot"></span><b>Castanho claro</b><small>natural</small></button><button type="button" class="qz-sw" data-qz-base="loiro" style="--c:#B08A5A" aria-pressed="false"><span class="qz-sw__dot"></span><b>Loiro</b><small>natural ou com mechas</small></button><button type="button" class="qz-sw" data-qz-base="quimica" style="--c:#7A3A24" aria-pressed="false"><span class="qz-sw__dot"></span><b>Com química</b><small>tinta, progressiva…</small></button></div>
+              <p class="qz-label">Textura</p>
+              <div class="qz-texs" role="group" aria-label="Textura do cabelo"><button type="button" class="qz-tex" data-qz-tex="liso" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3v18M12 3v18M16 3v18"/></svg><b>Liso</b></button><button type="button" class="qz-tex" data-qz-tex="ondulado" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3c-3 4 3 7 0 11s3 6 0 7M12 3c-3 4 3 7 0 11s3 6 0 7M16 3c-3 4 3 7 0 11s3 6 0 7"/></svg><b>Ondulado</b></button><button type="button" class="qz-tex" data-qz-tex="cacheado" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3c4 1 4 4 0 5s-4 4 0 5-4 4 0 5 4 3 0 3M14 3c4 1 4 4 0 5s-4 4 0 5-4 4 0 5 4 3 0 3"/></svg><b>Cacheado</b></button></div>
+              <div class="qz-actions"><button type="button" class="btn btn--dark" data-qz-next disabled>Continuar <svg class="ico"><use href="#i-arrow"/></svg></button></div>
+            </div>
+
+            <div class="qz-step" data-qz-step="1">
+              <p class="qz-count">Etapa 2 de 3</p>
+              <h3 class="qz-q">Qual resultado você sonha?</h3>
+              <p class="qz-sub">Toque na foto. São resultados reais do Atelier.</p>
+              <div class="qz-mosaic" role="group" aria-label="Resultado desejado"><button type="button" class="qz-tile" data-qz-dream="perola" aria-pressed="false"><img src="assets/img/cor-perola.jpg" alt="" loading="lazy"><span>Loiro pérola</span></button><button type="button" class="qz-tile" data-qz-dream="mel" aria-pressed="false"><img src="assets/img/cor-mel.jpg" alt="" loading="lazy"><span>Mel</span></button><button type="button" class="qz-tile" data-qz-dream="mechas-douradas" aria-pressed="false"><img src="assets/img/cor-mechas-douradas.jpg" alt="" loading="lazy"><span>Mechas douradas</span></button><button type="button" class="qz-tile" data-qz-dream="marrom-dourado" aria-pressed="false"><img src="assets/img/cor-marrom-dourado.jpg" alt="" loading="lazy"><span>Morena iluminada marrom dourado</span></button><button type="button" class="qz-tile" data-qz-dream="caramelo" aria-pressed="false"><img src="assets/img/cor-caramelo.jpg" alt="" loading="lazy"><span>Caramelo</span></button><button type="button" class="qz-tile" data-qz-dream="cobre" aria-pressed="false"><img src="assets/img/cor-cobre.jpg" alt="" loading="lazy"><span>Cobre</span></button><button type="button" class="qz-tile" data-qz-dream="coloracao" aria-pressed="false"><img src="assets/img/cor-coloracao.jpg" alt="" loading="lazy"><span>Coloração</span></button><button type="button" class="qz-tile" data-qz-dream="cafe" aria-pressed="false"><img src="assets/img/cor-cafe.jpg" alt="" loading="lazy"><span>Café</span></button></div>
+              <div class="qz-actions"><button type="button" class="qz-back" data-qz-back>← Voltar</button><button type="button" class="btn btn--dark" data-qz-next disabled>Continuar <svg class="ico"><use href="#i-arrow"/></svg></button></div>
+            </div>
+
+            <div class="qz-step" data-qz-step="2">
+              <p class="qz-count">Etapa 3 de 3</p>
+              <h3 class="qz-q">De quanto em quanto tempo você quer cuidar?</h3>
+              <div class="qz-sim">
+                <div class="qz-lock">
+                  <svg viewBox="0 0 120 400" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="qzGrad" x1="0" y1="0" x2="0" y2="1" data-qz-grad></linearGradient>
+                      <clipPath id="qzClip"><path data-qz-lockclip/></clipPath>
+                    </defs>
+                    <path data-qz-lock fill="url(#qzGrad)"/>
+                    <g clip-path="url(#qzClip)" data-qz-fibers fill="none" stroke-linecap="round"></g>
+                    <g data-qz-marker>
+                      <line x1="0" x2="120" stroke="#C8A46C" stroke-width="1.2" stroke-dasharray="3 3"/>
+                    </g>
+                  </svg>
+                  <p class="qz-lock__cap" data-qz-rootcap>raiz natural</p>
+                </div>
+                <div class="qz-ctrl">
+                  <p class="qz-months"><span>A cada</span> <b data-qz-mout>3</b> <span data-qz-munit>meses</span></p>
+                  <input type="range" min="1" max="6" step="1" value="3" class="qz-range" data-qz-months aria-label="Meses entre um cuidado e outro">
+                  <div class="qz-ticks" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span></div>
+                  <p class="qz-tip" data-qz-tip></p>
+                </div>
+              </div>
+              <div class="qz-actions"><button type="button" class="qz-back" data-qz-back>← Voltar</button><button type="button" class="btn btn--dark" data-qz-next>Ver meu resultado <svg class="ico"><use href="#i-arrow"/></svg></button></div>
+            </div>
+
+            <div class="qz-step" data-qz-step="3">
+              <div class="qz-card">
+                <div class="qz-card__photo"><img data-qz-cphoto alt="" src="assets/img/cor-perola.jpg" loading="lazy"></div>
+                <div class="qz-card__body">
+                  <p class="qz-count">Seu tom ideal</p>
+                  <h3 class="qz-card__name" data-qz-cname></h3>
+                  <p class="qz-card__tec" data-qz-ctec></p>
+                  <ul class="qz-card__facts">
+                    <li><span>Cuidado ideal</span><b data-qz-crec></b></li>
+                    <li><span>Seu cabelo hoje</span><b data-qz-cbase></b></li>
+                  </ul>
+                  <p class="qz-card__note" data-qz-cnote></p>
+                  <p class="qz-card__sign"><svg><use href="#mono"/></svg>Nicoly Medeiros</p>
+                </div>
+              </div>
+              <div class="qz-actions qz-actions--result">
+                <a class="btn btn--gold" data-qz-wa target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Quero esse resultado</a>
+                <button type="button" class="btn btn--ghost-dark" data-qz-save><svg class="ico" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m-5-5 5 5 5-5M5 20h14"/></svg>Salvar meu cartão</button>
+                <button type="button" class="qz-back" data-qz-restart>Refazer o teste</button>
+              </div>
+              <p class="quiz__note">Resultado indicativo. A indicação final é feita na avaliação presencial, de acordo com o histórico e a saúde dos seus fios.</p>
+            </div>
+
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -827,7 +908,7 @@
   <svg class="ico"><use href="#i-wa"/></svg><span>Agendar</span>
 </a>
 
-<script src="assets/js/main.js?v=202611231842" defer></script>
+<script src="assets/js/main.js?v=202611231946" defer></script>
 <dialog class="vmodal" id="vmodal" aria-label="Vídeo do procedimento">
   <button type="button" class="vmodal__close" data-vclose aria-label="Fechar vídeo">&times;</button>
   <video class="vmodal__video" controls playsinline></video>
