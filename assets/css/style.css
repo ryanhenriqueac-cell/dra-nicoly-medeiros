@@ -262,7 +262,7 @@ p { margin: 0 0 1em; }
 }
 
 /* ---------- Procedimentos ---------- */
-.procedimentos { background: var(--marfim); }
+.procedimentos { background: var(--areia); }
 .procs { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--linha); border-left: 1px solid var(--linha); }
 .proc {
   position: relative; display: flex; flex-direction: column;
@@ -845,6 +845,13 @@ p { margin: 0 0 1em; }
   .atelier__cta-actions { width: 100%; }
   .atelier__cta-actions .btn { width: 100%; }
 }
+
+/* ---------- Nova sequência ---------- */
+.marquee--rev .marquee__track { animation-direction: reverse; }
+.hair-folio--top { margin-top: 0; }
+.atelier__sub { margin-top: clamp(90px, 11vw, 140px); }
+.cilios { background: radial-gradient(ellipse 50% 70% at 50% 0%, rgba(200, 164, 108, .16), transparent 70%), var(--marfim); }
+.cilios__chips li { background: #fff; }
 
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
 .hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); pointer-events: none; }
