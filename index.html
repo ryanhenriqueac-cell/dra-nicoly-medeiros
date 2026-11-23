@@ -373,50 +373,84 @@
       <p>Passe pelas técnicas e veja cada tom ganhar vida.</p>
     </header>
 
-    <div class="atelier__grid">
-      <div class="tone-stage reveal" aria-hidden="true">
-        <div class="tone-stage__arch">
-          <div class="tone tone--loiro is-active"></div>
-          <div class="tone tone--mechas"></div>
-          <div class="tone tone--morena"></div>
-          <div class="tone tone--pigmentacao"></div>
-          <div class="tone tone--coloracao"></div>
-          <div class="tone-stage__shine"></div>
-          <p class="tone-stage__name" id="toneName">Loiros</p>
-        </div>
-        <div class="swatches">
-          <span style="--c:#EFE3C8">Pérola</span>
-          <span style="--c:#D9B97E">Mel</span>
-          <span style="--c:#B07A45">Caramelo</span>
-          <span style="--c:#6B3F26">Chocolate</span>
-          <span style="--c:#2E1B14">Café</span>
-        </div>
+    <div class="cf cf--dark reveal" data-cf aria-roledescription="carrossel" aria-label="Tons do Atelier">
+      <div class="cf__stage">
+          <div class="cf__item">
+            <div class="cf__arch">
+              <div class="tone tone--loiro is-active"></div>
+              <div class="tone-stage__shine"></div>
+              <p class="cf__label">Loiros</p>
+            </div>
+          </div>
+          <div class="cf__item">
+            <div class="cf__arch">
+              <div class="tone tone--mechas is-active"></div>
+              <div class="tone-stage__shine"></div>
+              <p class="cf__label">Mechas</p>
+            </div>
+          </div>
+          <div class="cf__item">
+            <div class="cf__arch">
+              <div class="tone tone--morena is-active"></div>
+              <div class="tone-stage__shine"></div>
+              <p class="cf__label">Morena iluminada</p>
+            </div>
+          </div>
+          <div class="cf__item">
+            <div class="cf__arch">
+              <div class="tone tone--pigmentacao is-active"></div>
+              <div class="tone-stage__shine"></div>
+              <p class="cf__label">Pigmentação</p>
+            </div>
+          </div>
+          <div class="cf__item">
+            <div class="cf__arch">
+              <div class="tone tone--coloracao is-active"></div>
+              <div class="tone-stage__shine"></div>
+              <p class="cf__label">Coloração</p>
+            </div>
+          </div>
       </div>
+      <div class="cf__info" aria-live="polite">
+          <div class="cf__text">
+            <span class="cf__num">01</span>
+            <h3>Loiros</h3>
+            <p>Do mel ao platinado, loiros luminosos e saudáveis, construídos com técnica e respeito à fibra do fio.</p>
+            <a class="link-gold" data-wa="Olá! Tenho interesse em fazer loiro. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="cf__text">
+            <span class="cf__num">02</span>
+            <h3>Mechas</h3>
+            <p>Pontos de luz desenhados para o seu rosto, com transição suave e manutenção inteligente.</p>
+            <a class="link-gold" data-wa="Olá! Tenho interesse em mechas. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="cf__text">
+            <span class="cf__num">03</span>
+            <h3>Morena iluminada</h3>
+            <p>A elegância das morenas com reflexos caramelo e mel que iluminam sem perder a profundidade.</p>
+            <a class="link-gold" data-wa="Olá! Tenho interesse em morena iluminada. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="cf__text">
+            <span class="cf__num">04</span>
+            <h3>Pigmentação</h3>
+            <p>Cor intensa e brilho de volta aos fios, corrigindo tons e devolvendo vida ao cabelo.</p>
+            <a class="link-gold" data-wa="Olá! Tenho interesse em pigmentação. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+          <div class="cf__text">
+            <span class="cf__num">05</span>
+            <h3>Coloração</h3>
+            <p>Cobertura impecável e cor sob medida, da raiz às pontas, com acabamento sofisticado.</p>
+            <a class="link-gold" data-wa="Olá! Tenho interesse em coloração. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a>
+          </div>
+      </div>
+      <div class="cf__nav">
+        <button class="cf__btn" type="button" data-cf-prev aria-label="Anterior"><svg class="ico flip"><use href="#i-arrow"/></svg></button>
+        <div class="swatches swatches--nav" role="group" aria-label="Escolha um tom"><button type="button" class="swatch" data-cf-go="0" style="--c:#EFE3C8" aria-label="Ver Loiros"><span>Pérola</span></button><button type="button" class="swatch" data-cf-go="1" style="--c:#D9B97E" aria-label="Ver Mechas"><span>Mel</span></button><button type="button" class="swatch" data-cf-go="2" style="--c:#B07A45" aria-label="Ver Morena iluminada"><span>Caramelo</span></button><button type="button" class="swatch" data-cf-go="3" style="--c:#9A4424" aria-label="Ver Pigmentação"><span>Cobre</span></button><button type="button" class="swatch" data-cf-go="4" style="--c:#2E1B14" aria-label="Ver Coloração"><span>Café</span></button></div>
+        <button class="cf__btn" type="button" data-cf-next aria-label="Próximo"><svg class="ico"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
 
-      <div class="atelier__menu reveal">
-                <ul class="tone-list" id="toneList">
-          <li>
-            <button class="tone-item" type="button" data-tone="loiro" aria-expanded="false"><span class="tone-item__num">01</span><span class="tone-item__title">Loiros</span><svg class="ico"><use href="#i-arrow"/></svg></button>
-            <div class="tone-item__body"><div><p>Do mel ao platinado, loiros luminosos e saudáveis, construídos com técnica e respeito à fibra do fio.</p><a class="link-gold" data-wa="Olá! Tenho interesse em fazer loiro. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-          </li>
-          <li>
-            <button class="tone-item" type="button" data-tone="mechas" aria-expanded="false"><span class="tone-item__num">02</span><span class="tone-item__title">Mechas</span><svg class="ico"><use href="#i-arrow"/></svg></button>
-            <div class="tone-item__body"><div><p>Pontos de luz desenhados para o seu rosto, com transição suave e manutenção inteligente.</p><a class="link-gold" data-wa="Olá! Tenho interesse em mechas. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-          </li>
-          <li>
-            <button class="tone-item" type="button" data-tone="morena" aria-expanded="false"><span class="tone-item__num">03</span><span class="tone-item__title">Morena iluminada</span><svg class="ico"><use href="#i-arrow"/></svg></button>
-            <div class="tone-item__body"><div><p>A elegância das morenas com reflexos caramelo e mel que iluminam sem perder a profundidade.</p><a class="link-gold" data-wa="Olá! Tenho interesse em morena iluminada. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-          </li>
-          <li>
-            <button class="tone-item" type="button" data-tone="pigmentacao" aria-expanded="false"><span class="tone-item__num">04</span><span class="tone-item__title">Pigmentação</span><svg class="ico"><use href="#i-arrow"/></svg></button>
-            <div class="tone-item__body"><div><p>Cor intensa e brilho de volta aos fios, corrigindo tons e devolvendo vida ao cabelo.</p><a class="link-gold" data-wa="Olá! Tenho interesse em pigmentação. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-          </li>
-          <li>
-            <button class="tone-item" type="button" data-tone="coloracao" aria-expanded="false"><span class="tone-item__num">05</span><span class="tone-item__title">Coloração</span><svg class="ico"><use href="#i-arrow"/></svg></button>
-            <div class="tone-item__body"><div><p>Cobertura impecável e cor sob medida, da raiz às pontas, com acabamento sofisticado.</p><a class="link-gold" data-wa="Olá! Tenho interesse em coloração. Gostaria de agendar uma avaliação.">Quero esse tom <svg class="ico"><use href="#i-arrow"/></svg></a></div></div>
-          </li>
-        </ul>
-
+    <div class="tricologia reveal">
         <p class="atelier__label">Tricologia · Couro cabeludo</p>
         <p class="capilar__intro">Tratamentos do couro cabeludo, a base de um cabelo saudável.</p>
         <div class="capilar">
@@ -429,7 +463,6 @@
             <p>Microestímulos no couro cabeludo que ativam a circulação e potencializam o tratamento da queda.</p>
           </a>
         </div>
-      </div>
     </div>
 
     <div class="atelier__cta reveal">
@@ -484,34 +517,43 @@
       <h2>Um olhar que fala <em>por você.</em></h2>
       <p>Cílios desenhados para valorizar o seu olhar, do efeito natural ao marcante, sempre respeitando o formato dos seus olhos. Conheça os modelos:</p>
     </header>
-    <div class="lash-models">
-      <figure class="lash-model reveal">
-        <div class="lash-model__img"><img src="assets/img/cilios-brasileiro.jpg" alt="Lash design, modelo Volume brasileiro" loading="lazy"></div>
-        <figcaption>
-          <span class="lash-model__num">01</span>
+    <div class="cf cf--light reveal" data-cf aria-roledescription="carrossel" aria-label="Modelos de cílios">
+      <div class="cf__stage">
+        <div class="cf__item">
+          <div class="cf__arch cf__arch--photo"><img src="assets/img/cilios-brasileiro.jpg" alt="Lash design, modelo Volume brasileiro" loading="lazy"></div>
+        </div>
+        <div class="cf__item">
+          <div class="cf__arch cf__arch--photo"><img src="assets/img/cilios-jade.jpg" alt="Lash design, modelo Efeito jade" loading="lazy"></div>
+        </div>
+        <div class="cf__item">
+          <div class="cf__arch cf__arch--photo"><img src="assets/img/cilios-egipcio.jpg" alt="Lash design, modelo Volume egípcio" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="cf__info" aria-live="polite">
+        <div class="cf__text">
+          <span class="cf__num">01</span>
           <h3>Volume brasileiro</h3>
           <p>Volume leve e natural: cílios cheios e definidos, sem pesar no olhar.</p>
           <a class="link-gold" data-wa="Olá, Dra. Nicoly! Tenho interesse no Lash Design, modelo Volume brasileiro.">Quero esse modelo <svg class="ico"><use href="#i-arrow"/></svg></a>
-        </figcaption>
-      </figure>
-      <figure class="lash-model reveal">
-        <div class="lash-model__img"><img src="assets/img/cilios-jade.jpg" alt="Lash design, modelo Efeito jade" loading="lazy"></div>
-        <figcaption>
-          <span class="lash-model__num">02</span>
+        </div>
+        <div class="cf__text">
+          <span class="cf__num">02</span>
           <h3>Efeito jade</h3>
           <p>Um olhar intenso e sofisticado, com acabamento marcante.</p>
           <a class="link-gold" data-wa="Olá, Dra. Nicoly! Tenho interesse no Lash Design, modelo Efeito jade.">Quero esse modelo <svg class="ico"><use href="#i-arrow"/></svg></a>
-        </figcaption>
-      </figure>
-      <figure class="lash-model reveal">
-        <div class="lash-model__img"><img src="assets/img/cilios-egipcio.jpg" alt="Lash design, modelo Volume egípcio" loading="lazy"></div>
-        <figcaption>
-          <span class="lash-model__num">03</span>
+        </div>
+        <div class="cf__text">
+          <span class="cf__num">03</span>
           <h3>Volume egípcio</h3>
           <p>Mais densidade e preenchimento para um olhar poderoso.</p>
           <a class="link-gold" data-wa="Olá, Dra. Nicoly! Tenho interesse no Lash Design, modelo Volume egípcio.">Quero esse modelo <svg class="ico"><use href="#i-arrow"/></svg></a>
-        </figcaption>
-      </figure>
+        </div>
+      </div>
+      <div class="cf__nav">
+        <button class="cf__btn" type="button" data-cf-prev aria-label="Anterior"><svg class="ico flip"><use href="#i-arrow"/></svg></button>
+        <div class="cf__dots" data-cf-dots></div>
+        <button class="cf__btn" type="button" data-cf-next aria-label="Próximo"><svg class="ico"><use href="#i-arrow"/></svg></button>
+      </div>
     </div>
     <a class="btn btn--dark reveal" data-wa="Olá, Dra. Nicoly! Tenho interesse em Lash Design."><svg class="ico"><use href="#i-wa"/></svg>Agendar meus cílios</a>
   </div>

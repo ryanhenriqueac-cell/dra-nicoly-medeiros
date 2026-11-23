@@ -880,6 +880,109 @@ p { margin: 0 0 1em; }
   .lash-model { scroll-snap-align: center; }
 }
 
+/* ---------- Carrossel em destaque (cores e cílios) ---------- */
+.cf { position: relative; width: 100%; outline: none; }
+.cf__stage {
+  position: relative; height: clamp(380px, 40vw, 540px); margin: 0 auto;
+  touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.cf__item {
+  --d: 0; --a: 0;
+  position: absolute; top: 0; left: 50%; height: 100%; aspect-ratio: 4 / 5.2;
+  transform: translateX(-50%) translateX(calc(var(--d) * 74%)) scale(calc(1 - var(--a) * .2));
+  z-index: calc(10 - var(--a));
+  filter: brightness(calc(1 - var(--a) * .38));
+  transition: transform .8s var(--ease), filter .8s var(--ease), opacity .6s;
+  cursor: pointer;
+}
+.cf__item.is-active { cursor: default; }
+.cf__item.is-far { opacity: 0; pointer-events: none; }
+.cf__arch {
+  position: relative; width: 100%; height: 100%; border-radius: 999px 999px 8px 8px; overflow: hidden;
+  background: var(--cafe-3);
+}
+.cf--dark .cf__arch { box-shadow: 0 0 0 1px rgba(200, 164, 108, .45), 0 0 0 12px rgba(47, 27, 22, .7), 0 0 0 13px rgba(200, 164, 108, .22), 0 50px 90px -30px rgba(0, 0, 0, .85); }
+.cf--light .cf__arch { box-shadow: 0 0 0 1px rgba(200, 164, 108, .45), 0 0 0 10px var(--marfim), 0 0 0 11px rgba(200, 164, 108, .3), 0 40px 70px -30px rgba(47, 27, 22, .55); }
+.cf__arch .tone { opacity: 1; }
+.cf__arch--photo img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.cf__label {
+  position: absolute; left: 0; right: 0; bottom: 24px; margin: 0; text-align: center;
+  font-family: var(--serif); font-style: italic; font-size: 1.7rem; color: #fff; text-shadow: 0 2px 20px rgba(0, 0, 0, .45);
+}
+
+.cf__info { position: relative; text-align: center; max-width: 560px; margin: 40px auto 0; min-height: 170px; }
+.cf__text { display: none; }
+.cf__text.is-active { display: block; animation: cfIn .6s var(--ease) both; }
+@keyframes cfIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+.cf__num { font-family: var(--sans); font-size: .66rem; font-weight: 500; letter-spacing: .3em; text-transform: uppercase; color: var(--dourado); }
+.cf__text h3 { font-size: clamp(2rem, 3.4vw, 2.6rem); margin: 6px 0 10px; }
+.cf__text p { margin: 0 auto 16px; max-width: 480px; }
+.cf__text .link-gold { margin-bottom: 0; }
+.cf--dark .cf__text h3 { color: var(--marfim); }
+.cf--dark .cf__text p { color: rgba(251, 247, 241, .7); }
+.cf--light .cf__num { color: var(--dourado-escuro); }
+.cf--light .cf__text p { color: var(--texto-suave); }
+.cf--light .link-gold { color: var(--dourado-escuro); }
+.cf--light .link-gold:hover { color: var(--cacau); }
+
+.cf__nav { display: flex; align-items: center; justify-content: center; gap: clamp(14px, 3vw, 28px); margin-top: 26px; }
+.cf__btn {
+  width: 52px; height: 52px; flex: none; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+  background: transparent; border: 1px solid rgba(200, 164, 108, .5); color: var(--dourado);
+  transition: background .3s, border-color .3s, transform .3s var(--ease);
+}
+.cf__btn:hover { border-color: var(--dourado); background: rgba(200, 164, 108, .12); }
+.cf__btn:active { transform: scale(.94); }
+.cf--light .cf__btn { color: var(--dourado-escuro); }
+.cf__dots { display: flex; gap: 10px; align-items: center; }
+.cf__dot {
+  width: 10px; height: 10px; padding: 0; border: 0; border-radius: 99px; cursor: pointer;
+  background: rgba(169, 133, 79, .35); transition: width .5s var(--ease), background .3s;
+}
+.cf__dot.is-active { width: 34px; background: var(--dourado); }
+
+/* amostras de cor viram a navegação */
+.swatches--nav { margin: 0; gap: clamp(8px, 2vw, 16px); }
+.swatch {
+  display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 0; border: 0; background: none; cursor: pointer;
+  font: inherit; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(251, 247, 241, .5);
+  transition: color .3s;
+}
+.swatch::before {
+  content: ""; width: 34px; height: 34px; border-radius: 50%; background: var(--c);
+  box-shadow: 0 0 0 1px rgba(200, 164, 108, .5), inset 0 -6px 10px rgba(0, 0, 0, .18);
+  transition: transform .4s var(--ease), box-shadow .4s;
+}
+.swatch:hover::before { transform: scale(1.1); }
+.swatch.is-active { color: var(--dourado-claro); }
+.swatch.is-active::before { transform: scale(1.18); box-shadow: 0 0 0 2px var(--cafe), 0 0 0 3px var(--dourado), inset 0 -6px 10px rgba(0, 0, 0, .18); }
+.swatch:focus-visible::before, .cf__dot:focus-visible, .cf__btn:focus-visible { outline: 2px solid var(--dourado); outline-offset: 3px; }
+
+.tricologia { max-width: 900px; margin: 90px auto 0; }
+.swatches--nav span { display: inline; font-size: inherit; letter-spacing: inherit; color: inherit; }
+.swatches--nav span::before { content: none; }
+.cf--light .cf__item { filter: brightness(calc(1 - var(--a) * .1)); opacity: calc(1 - var(--a) * .25); }
+.cf--light .cf__item.is-far { opacity: 0; }
+.cilios .cf { margin: 6px 0 52px; }
+.cilios, .atelier { overflow: hidden; overflow: clip; }
+
+@media (max-width: 760px) {
+  .cf__stage { height: min(112vw, 440px); }
+  .cf__item { transform: translateX(-50%) translateX(calc(var(--d) * 62%)) scale(calc(1 - var(--a) * .24)); }
+  .cf__label { font-size: 1.35rem; bottom: 18px; }
+  .cf__info { margin-top: 28px; }
+  .cf__nav { gap: 18px 14px; flex-wrap: wrap; }
+  .swatches--nav { flex-basis: 100%; order: -1; justify-content: center; }
+  .cf__btn { width: 44px; height: 44px; }
+  .swatch { font-size: .5rem; letter-spacing: .12em; }
+  .swatch::before { width: 28px; height: 28px; }
+  .tricologia { margin-top: 70px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cf__item { transition: none; }
+  .cf__text.is-active { animation: none; }
+}
+
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
 .hero__video { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); pointer-events: none; }
 .hero__video video { width: 100%; height: 100%; object-fit: cover; object-position: 70% 50%; display: block; }

@@ -188,6 +188,69 @@ const CONFIG = {
     track.addEventListener('dragstart', (e) => e.preventDefault());
   }
 
+  /* ---------- Carrossel em destaque (cores do Atelier e modelos de cílios) ---------- */
+  $$('[data-cf]').forEach((root) => {
+    const items = $$('.cf__item', root);
+    const texts = $$('.cf__text', root);
+    const n = items.length;
+    const dotsBox = $('[data-cf-dots]', root);
+    if (dotsBox) {
+      items.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'cf__dot';
+        b.dataset.cfGo = i;
+        b.setAttribute('aria-label', `Ver ${$('h3', texts[i]).textContent}`);
+        dotsBox.appendChild(b);
+      });
+    }
+    const goBtns = $$('[data-cf-go]', root);
+    let active = 0;
+
+    const go = (i) => {
+      active = (i + n) % n;
+      items.forEach((el, k) => {
+        let d = k - active;
+        if (d > n / 2) d -= n;
+        if (d < -n / 2) d += n;
+        el.style.setProperty('--d', d);
+        el.style.setProperty('--a', Math.abs(d));
+        el.classList.toggle('is-active', d === 0);
+        el.classList.toggle('is-far', Math.abs(d) > 1);
+        el.setAttribute('aria-hidden', String(d !== 0));
+      });
+      texts.forEach((t, k) => t.classList.toggle('is-active', k === active));
+      goBtns.forEach((b) => {
+        const on = Number(b.dataset.cfGo) === active;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', String(on));
+      });
+    };
+
+    items.forEach((el, k) => el.addEventListener('click', () => { if (k !== active) go(k); }));
+    $('[data-cf-prev]', root).addEventListener('click', () => go(active - 1));
+    $('[data-cf-next]', root).addEventListener('click', () => go(active + 1));
+    goBtns.forEach((b) => b.addEventListener('click', () => go(Number(b.dataset.cfGo))));
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(active - 1);
+      if (e.key === 'ArrowRight') go(active + 1);
+    });
+
+    // arrastar com o dedo (ou mouse) para os lados
+    const stage = $('.cf__stage', root);
+    let x0 = null;
+    stage.addEventListener('pointerdown', (e) => { x0 = e.clientX; });
+    stage.addEventListener('pointerup', (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) go(active + (dx < 0 ? 1 : -1));
+    });
+    stage.addEventListener('pointercancel', () => { x0 = null; });
+
+    go(0);
+  });
+
   /* ---------- Teste: descubra sua cor ---------- */
   const quiz = $('[data-quiz]');
   if (quiz) {
