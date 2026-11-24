@@ -44,6 +44,7 @@ body {
   background: var(--marfim);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  overflow-x: clip; /* corta sem virar área de rolagem: mantém os elementos fixos (sticky) funcionando */
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -1253,6 +1254,70 @@ p { margin: 0 0 1em; }
   .qz-actions .btn { width: 100%; }
   .qz-actions .qz-back { order: 2; margin: 0 auto; }
   .qz-dots button { font-size: .5rem; letter-spacing: .14em; }
+}
+
+/* ---------- Laboratório da cor: mecha gerada por código ---------- */
+.qz-lab {
+  position: relative; aspect-ratio: 4 / 5.2; border-radius: 999px 999px 8px 8px; overflow: hidden; background: #1C110D;
+  box-shadow: 0 0 0 1px rgba(200, 164, 108, .5), 0 0 0 14px var(--marfim), 0 0 0 15px rgba(200, 164, 108, .4), 0 50px 90px -30px rgba(47, 27, 22, .55);
+}
+.qz-lab__canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; }
+.qz-lab__name {
+  position: absolute; left: 16px; right: 16px; bottom: 20px; margin: 0; text-align: center; pointer-events: none;
+  font-family: var(--serif); font-style: italic; font-size: 1.6rem; line-height: 1.15; color: #fff; text-shadow: 0 2px 18px rgba(0, 0, 0, .55);
+}
+.qz-lab__hint {
+  display: flex; align-items: center; justify-content: center; gap: 10px; margin: 26px 0 0;
+  font-size: .62rem; font-weight: 500; letter-spacing: .24em; text-transform: uppercase; color: var(--texto-suave);
+}
+.qz-lab__hint span { width: 8px; height: 8px; border-radius: 50%; background: var(--dourado); box-shadow: 0 0 0 4px rgba(200, 164, 108, .22); animation: labPulse 2.4s ease-in-out infinite; }
+@keyframes labPulse { 50% { box-shadow: 0 0 0 8px rgba(200, 164, 108, 0); } }
+
+.qz-label--row { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; }
+.qz-label--row b { font-weight: 500; letter-spacing: .06em; text-transform: none; font-size: .82rem; color: var(--dourado-escuro); }
+.qz-range--level { background: linear-gradient(90deg, #0E0B0A, #2E1D15 22%, #6A4128 44%, #A87A4C 66%, #DDBE8E 88%, #EEDDBB); height: 10px; }
+.qz-ticks--10 { margin-bottom: 20px; }
+
+.qz-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.qz-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px 8px 8px; border-radius: 99px; cursor: pointer;
+  border: 1px solid var(--linha); background: #fff; font: inherit; font-size: .84rem; color: var(--texto);
+  transition: border-color .3s, background .3s, box-shadow .3s;
+}
+.qz-chip span { width: 20px; height: 20px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 1px rgba(200, 164, 108, .5), inset 0 -3px 5px rgba(0, 0, 0, .18); }
+.qz-chip:hover { border-color: var(--dourado); }
+.qz-chip[aria-pressed="true"] { border-color: var(--dourado); background: rgba(200, 164, 108, .14); box-shadow: 0 0 0 1px var(--dourado); }
+
+.qz-techs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.qz-tech {
+  display: flex; flex-direction: column; align-items: center; gap: 5px; padding: 10px 6px; border-radius: 12px; cursor: pointer; text-align: center;
+  border: 1px solid var(--linha); background: #fff; font: inherit; color: var(--texto);
+  transition: border-color .3s, background .3s, transform .4s var(--ease), box-shadow .3s;
+}
+.qz-tech:hover { border-color: var(--dourado); transform: translateY(-2px); }
+.qz-tech[aria-pressed="true"] { border-color: var(--dourado); background: rgba(200, 164, 108, .12); box-shadow: 0 0 0 1px var(--dourado); }
+.qz-tech__bar { width: 26px; height: 46px; border-radius: 13px 13px 6px 6px; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .12); }
+.qz-tech b { font-weight: 400; font-size: .78rem; line-height: 1.2; }
+.qz-tech small { font-size: .62rem; color: var(--texto-suave); line-height: 1.2; }
+
+.qz .qz-sub { margin: -8px 0 14px; }
+.qz-card__photo img { background: #1C110D; }
+
+@media (max-width: 1080px) {
+  /* no celular a mecha fica fixa no topo enquanto a cliente escolhe */
+  .qz .quiz__visual {
+    position: sticky; top: calc(var(--header-h) - 1px); z-index: 3; max-width: none; justify-self: stretch;
+    padding: 14px 0 18px; margin: 0 calc(var(--gutter) * -1);
+    background: var(--areia);
+  }
+  .qz .quiz__visual::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: 22px; background: linear-gradient(180deg, var(--areia), rgba(239, 230, 219, 0)); pointer-events: none; }
+  .qz-lab { width: auto; height: min(36vh, 300px); aspect-ratio: 4 / 5.2; margin: 0 auto; box-shadow: 0 0 0 1px rgba(200, 164, 108, .5), 0 0 0 8px var(--marfim), 0 0 0 9px rgba(200, 164, 108, .4), 0 24px 40px -24px rgba(47, 27, 22, .5); }
+  .qz-lab__name { font-size: 1.15rem; bottom: 12px; }
+  .qz-lab__hint { margin-top: 12px; }
+  .qz .quiz__mono { display: none; }
+}
+@media (max-width: 640px) {
+  .qz-techs { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ---------- Hero com vídeo (ativa sozinho quando assets/video/hero.mp4 existe) ---------- */
